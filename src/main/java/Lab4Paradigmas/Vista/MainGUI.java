@@ -1,10 +1,14 @@
 package main.java.Lab4Paradigmas.Vista;
 
+import main.java.Lab4Paradigmas.Modelo.DobbleGame;
+
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class DobbleGUI extends JFrame{
+public class MainGUI extends JFrame{
+    protected DobbleGame juego;
     private JPanel panelMain;
     private JButton jugarButton;
     private JLabel bienvenidoADobbleLabel;
@@ -14,8 +18,16 @@ public class DobbleGUI extends JFrame{
     private JButton crearJuegoButton;
     private JButton salirButton;
     private JLabel Logo;
+    private JButton verJugadoresRegistradosButton;
 
-    public DobbleGUI(){
+    public MainGUI(){
+        this.setContentPane(panelMain);
+        this.setResizable(false);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ImageIcon img = new ImageIcon("src/main/java/Lab4Paradigmas/Vista/Resources/dobble.png");
+        this.setIconImage(img.getImage());
+        this.pack();
+        this.setLocationRelativeTo(null);
         jugarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -44,7 +56,8 @@ public class DobbleGUI extends JFrame{
         registrarUnJugadorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"Registrando jugador");
+                RegisterView vista = new RegisterView(juego);
+                vista.setVisible(true);
             }
         });
         cambiarModoDeJuegoButton.addActionListener(new ActionListener() {
@@ -59,14 +72,18 @@ public class DobbleGUI extends JFrame{
                 System.exit(0);
             }
         });
+        verJugadoresRegistradosButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (juego.getJugadores().size() == 0)
+                    JOptionPane.showMessageDialog(null,"No hay jugadores registrados");
+                else
+                    JOptionPane.showMessageDialog(null,"Jugadores registrados\n"+juego.getJugadores().toString());
+            }
+        });
     }
 
-    public static void main(String[] args) {
-
-        JFrame frame = new JFrame("Dobble");
-        frame.setContentPane(new DobbleGUI().panelMain);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
+    public void setJuego(DobbleGame juego) {
+        this.juego = juego;
     }
 }

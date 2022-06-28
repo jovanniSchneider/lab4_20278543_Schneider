@@ -45,9 +45,13 @@ public class Player implements Jugador {
     public List<Card> getMano() {
         return mano;
     }
+    public String getNombre() {
+        return nombre;
+    }
 
     public void setID(int ID) {
         this.ID = ID;
     }
+
 }
 

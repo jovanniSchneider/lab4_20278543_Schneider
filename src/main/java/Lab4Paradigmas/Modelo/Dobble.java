@@ -21,6 +21,8 @@ public class Dobble implements CardsSet {
         int n = cantidadSimbolos-1;
         cartas = new ArrayList<Card>();
         missingCards = new ArrayList<Card>();
+        if (maxCards <= 0)
+            maxCards = n*n + n + 1;
         int preCarta[] = new int[cantidadSimbolos];
         for (int i = 1; i <= cantidadSimbolos; i++) {
             preCarta[i-1] = i;

@@ -50,7 +50,9 @@ public class MainGUI extends JFrame{
         crearJuegoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"Creando el juego");
+                DobbleGameBuildView gameBuilder = new DobbleGameBuildView();
+                gameBuilder.setJuego(juego);
+                gameBuilder.setVisible(true);
             }
         });
         registrarUnJugadorButton.addActionListener(new ActionListener() {

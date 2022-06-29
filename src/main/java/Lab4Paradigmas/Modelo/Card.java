@@ -88,4 +88,8 @@ public class Card implements Carta{
     public int getCantidadSimbolos() {
         return cantidadSimbolos;
     }
+
+    public int[] getElementos() {
+        return elementos;
+    }
 }

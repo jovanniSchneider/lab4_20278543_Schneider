@@ -8,13 +8,6 @@ public interface Juego {
     void registrarJugador(String nombre);
 
     /**
-     * Permite crear una instancia de la clase Dobble
-     * @param cantidadSimbolos para pasarle al constructor de Dobble
-     * @param maxCard para pasarle al constructor de Dobble
-     */
-    void crearCardsSet(int cantidadSimbolos, int maxCard);
-
-    /**
      * Permite cambiar el turno correspondiente del juego
      */
     void cambiarTurno();

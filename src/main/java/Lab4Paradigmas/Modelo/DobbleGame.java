@@ -9,11 +9,13 @@ import java.util.Objects;
  */
 public class DobbleGame implements Juego {
     List<Player> jugadores;
+    int gameMode;
     int cantidadJugadores = 0;
     Dobble cardsSet;
     int turno = 1; //Es el ID del jugador
     Estado estado;
     List<Card> mazo;
+    List<Card> area;
 
     /**
      * Constructor de la instancia de clase
@@ -33,15 +35,6 @@ public class DobbleGame implements Juego {
         jugador.setID(this.cantidadJugadores+1);
         this.jugadores.add(jugador);
         this.cantidadJugadores+=1;
-    }
-
-    /**
-     * Implementacion de metodo de interface
-     */
-    @Override
-    public void crearCardsSet(int cantidadSimbolos, int maxCard) {
-        this.cardsSet = new Dobble(cantidadSimbolos,maxCard);
-        this.setEstado(Estado.CREADO);
     }
 
     /**
@@ -163,5 +156,29 @@ public class DobbleGame implements Juego {
 
     public void setEstado(Estado estado) {
         this.estado = estado;
+    }
+
+    public int getGameMode() {
+        return gameMode;
+    }
+
+    public void setMazo(List<Card> mazo) {
+        this.mazo = mazo;
+    }
+
+    public List<Card> getArea() {
+        return area;
+    }
+
+    public void setArea(List<Card> area) {
+        this.area = area;
+    }
+
+    public void setGameMode(int gameMode) {
+        this.gameMode = gameMode;
+    }
+
+    public List<Card> getMazo() {
+        return mazo;
     }
 }

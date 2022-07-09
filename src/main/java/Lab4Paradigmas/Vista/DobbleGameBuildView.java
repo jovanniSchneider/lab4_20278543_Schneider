@@ -22,10 +22,11 @@ public class DobbleGameBuildView extends JFrame {
     public DobbleGameBuildView() {
         this.setContentPane(panelMain);
         this.setTitle("Creacion de juego");
-        //this.setResizable(false);
+        this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ImageIcon img = new ImageIcon("src/main/java/Lab4Paradigmas/Vista/Resources/dobble.png");
         this.setIconImage(img.getImage());
+        this.pack();
         this.setLocationRelativeTo(null);
         crearJuegoButton.addActionListener(new ActionListener() {
             @Override
@@ -51,7 +52,6 @@ public class DobbleGameBuildView extends JFrame {
                         "\n- La cantidad de simbolos - 1 debe ser potencia de un numero primo");
             }
         });
-        this.pack();
     }
 
     public void setJuego(DobbleGame juego) {

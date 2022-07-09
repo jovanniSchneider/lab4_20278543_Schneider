@@ -46,4 +46,8 @@ public class CardView extends JFrame{
         }
         this.pack();
     }
+
+    public JPanel getPanelMain() {
+        return panelMain;
+    }
 }

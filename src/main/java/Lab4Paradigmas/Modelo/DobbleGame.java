@@ -181,4 +181,12 @@ public class DobbleGame implements Juego {
     public List<Card> getMazo() {
         return mazo;
     }
+
+    public int getTurno() {
+        return turno;
+    }
+
+    public void setTurno(int turno) {
+        this.turno = turno;
+    }
 }

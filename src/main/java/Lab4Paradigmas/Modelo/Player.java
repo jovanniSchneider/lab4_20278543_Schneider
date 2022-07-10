@@ -9,7 +9,7 @@ import java.util.List;
 public class Player implements Jugador {
     String nombre;
     List<Card> mano;
-    List<Card> cartasGanadas;
+    int puntaje;
     int ID;
 
     /**
@@ -18,7 +18,7 @@ public class Player implements Jugador {
      */
     public Player(String nombre){
         this.nombre = nombre;
-        this.cartasGanadas = new ArrayList<Card>();
+        this.puntaje = 0;
         this.mano = new ArrayList<>();
     }
 
@@ -49,9 +49,19 @@ public class Player implements Jugador {
         return nombre;
     }
 
+    public int getID() {
+        return ID;
+    }
     public void setID(int ID) {
         this.ID = ID;
     }
 
+    public int getPuntaje() {
+        return puntaje;
+    }
+
+    public void setPuntaje(int puntaje) {
+        this.puntaje = puntaje;
+    }
 }
 

@@ -6,14 +6,15 @@ import main.java.Lab4Paradigmas.Modelo.DobbleGame;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
 public class StackModeView extends JFrame{
     private JPanel panelMain;
-    private JTextField textField1;
+    private JTextField choice;
     private JButton jugarButton;
     private JProgressBar timeBar;
     private JPanel carta1;
@@ -35,6 +36,7 @@ public class StackModeView extends JFrame{
     private JLabel c2Symbol6;
     private JLabel c2Symbol7;
     private JLabel c2Symbol8;
+    private JLabel turno;
     private java.util.List<JLabel> labelsc1 = new ArrayList<>();
     private java.util.List<JLabel> labelsc2 = new ArrayList<>();
     int tiempo = 7;
@@ -57,11 +59,11 @@ public class StackModeView extends JFrame{
         labelsc2.add(c2Symbol7);
         labelsc2.add(c2Symbol8);
         PlayControl ctrl = new PlayControl();
+        ctrl.repartirCartas(juego);
         ctrl.stack(juego);
-        CardView card1 = new CardView(juego.getArea().get(0));
-        CardView card2 = new CardView(juego.getArea().get(1));
         ctrl.llenarCarta(labelsc1,juego.getArea().get(0));
         ctrl.llenarCarta(labelsc2,juego.getArea().get(1));
+        turno.setText(ctrl.whoseTurnIsIt(juego));
         this.setContentPane(panelMain);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -69,6 +71,7 @@ public class StackModeView extends JFrame{
         this.setIconImage(img.getImage());
         this.pack();
         this.setLocationRelativeTo(null);
+
         ActionListener actionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -84,31 +87,41 @@ public class StackModeView extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 timer.stop();
-                tiempo = 7;
-                StackModeView.this.revalidate();
-                StackModeView.this.repaint();
+                tiempo = 8;
+                if(ctrl.verificarRespuesta(juego.getArea().get(0),juego.getArea().get(1),choice.getText())){
+                    int puntaje = ctrl.darPunto(juego);
+                    JOptionPane.showMessageDialog(null,"Correcto!!!\n+1 punto\nTotal de "+ctrl.whoseTurnIsIt(juego)+"\n"+puntaje+" puntos");
+                    if(!ctrl.stack(juego)){
+                        JOptionPane.showMessageDialog(null,"No quedan cartas en el set\nGanador\n"+ctrl.getWinner(juego));
+                    }
+                    ctrl.llenarCarta(labelsc1,juego.getArea().get(0));
+                    ctrl.llenarCarta(labelsc2,juego.getArea().get(1));
+                    ctrl.changeTurn(juego);
+                    turno.setText(ctrl.whoseTurnIsIt(juego));
+                    StackModeView.this.revalidate();
+                    StackModeView.this.repaint();
+                    StackModeView.this.pack();
+                }else
+                    JOptionPane.showMessageDialog(null,"Incorrecto!!!");
                 timer.start();
+                choice.setText("");
+                choice.requestFocus();
             }
         });
         timeBar.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
                 if(timeBar.getValue()==0){
-                    JOptionPane.showMessageDialog(null,"TIEMPO AGOTADO");
+                    timer.stop();
+                    if (StackModeView.this.isActive()){
+                        JOptionPane.showMessageDialog(null,"TIEMPO AGOTADO");
+                        timer.start();
+                        tiempo = 7;
+                        ctrl.changeTurn(juego);
+                        turno.setText(ctrl.whoseTurnIsIt(juego));
+                    }
                 }
             }
         });
-    }
-
-    public void setCarta1(JPanel carta1) {
-        this.carta1 = carta1;
-    }
-
-    public void setCarta2(JPanel carta2) {
-        this.carta2 = carta2;
-    }
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
     }
 }

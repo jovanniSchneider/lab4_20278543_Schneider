@@ -94,7 +94,6 @@ public class Dobble implements CardsSet {
                 this.cartas.set(i,aux);
             }
         }
-        System.out.println(this.cartas.toString());
     }
 
 

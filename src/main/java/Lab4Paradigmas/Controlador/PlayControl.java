@@ -9,9 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Controlador de jugar
+ */
 public class PlayControl {
     public PlayControl() {}
 
+    /**
+     * Toma las 2 primeras cartas del juego y las coloca en el area de juego
+     * @param game Juego con el que se juega
+     * @return true si es que se pudo completar el volteamiento
+     */
     public boolean stack(DobbleGame game){
         if (game.getJugadores().size() <=1){
             return false;
@@ -80,7 +88,7 @@ public class PlayControl {
         return player.getPuntaje();
     }
     public void repartirCartas(DobbleGame game){
-        game.repartirCartas(0);
+        game.generarMazo(0);
         for (Player player:game.getJugadores()){
             player.setPuntaje(0);
         }

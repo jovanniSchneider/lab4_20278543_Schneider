@@ -36,8 +36,7 @@ public class DobbleGameBuildView extends JFrame {
                 if (creado)
                     JOptionPane.showMessageDialog(null,"Juego creado con exito");
                 else
-                    JOptionPane.showMessageDialog(null,"La cantidad de simbolos por carta debe ser " +
-                            "> 2\nJuego no creado");
+                    JOptionPane.showMessageDialog(null,"No se respeta alguna de las reglas\nJuego no creado");
                 DobbleGameBuildView.super.dispose();
             }
         });

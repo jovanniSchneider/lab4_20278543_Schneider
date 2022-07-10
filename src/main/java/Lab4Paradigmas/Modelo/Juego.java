@@ -23,5 +23,5 @@ public interface Juego {
      * Entrega cierta cantidad de cartas a cada jugador
      * @param cantidad de cartas a repartir
      */
-    void repartirCartas(int cantidad);
+    void generarMazo(int cantidad);
 }

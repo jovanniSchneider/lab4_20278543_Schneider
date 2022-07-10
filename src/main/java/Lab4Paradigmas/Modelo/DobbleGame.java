@@ -64,7 +64,7 @@ public class DobbleGame implements Juego {
      * Implementacion de metodo de interface
      */
     @Override
-    public void repartirCartas(int cantidad){
+    public void generarMazo(int cantidad){
         //Para revolver las cartas
         this.cardsSet.shufle();
         for(Card carta: this.getCardsSet().getCartas()){
@@ -72,7 +72,6 @@ public class DobbleGame implements Juego {
         }
         for (int i = 0; i < cantidad; i++) {
             for (int j = 0; j < this.getCantidadJugadores(); j++) {
-                this.jugadores.get(j).recogerCarta(this.mazo.get(0));
                 this.mazo.remove(0);
             }
         }

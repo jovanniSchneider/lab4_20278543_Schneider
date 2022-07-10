@@ -4,9 +4,8 @@ public interface CardsSet {
     /**
      *Para agregar una carta al cardsSet
      * @param simbolos los simbolos que contiene la carta
-     * @param donde un indice que indica en que atributo de la instancia se agregará la carta
      */
-    void addCarta(int[] simbolos, int donde);
+    void addCarta(int[] simbolos);
 
     /**
      * Para mostrar las cartas por consola

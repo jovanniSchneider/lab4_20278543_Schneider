@@ -32,9 +32,15 @@ public class MainGUI extends JFrame{
         jugarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                StackModeView view = new StackModeView(juego);
-                view.setVisible(true);
+                if (juego.getCardsSet() != null) {
+                    if (juego.getJugadores().size() <= 1){
+                        JOptionPane.showMessageDialog(null,"No hay suficientes jugadores registrados");
+                    }else{
+                        StackModeView view = new StackModeView(juego);
+                        view.setVisible(true);
+                    }
+                }else
+                    JOptionPane.showMessageDialog(null,"Primero debe crear un juego");
             }
         });
         verModosDeJuegoButton.addActionListener(new ActionListener() {

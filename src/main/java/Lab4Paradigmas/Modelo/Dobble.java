@@ -20,58 +20,44 @@ public class Dobble implements CardsSet {
     public Dobble(int cantidadSimbolos, int maxCards) {
         int n = cantidadSimbolos-1;
         cartas = new ArrayList<Card>();
-        missingCards = new ArrayList<Card>();
         if (maxCards <= 0)
             maxCards = n*n + n + 1;
         int preCarta[] = new int[cantidadSimbolos];
         for (int i = 1; i <= cantidadSimbolos; i++) {
             preCarta[i-1] = i;
         }
-        if(this.cartas.size()>= maxCards)
-            this.addCarta(preCarta,2);
-        else
-            this.addCarta(preCarta,1);
+        this.addCarta(preCarta);
         for (int i = 1; i <= n; i++) {
             preCarta[0] = (1);
             for (int j = 1; j <= n; j++) {
                 preCarta[j] = n*i+(j+1);
             }
-            if(this.cartas.size()>= maxCards)
-                this.addCarta(preCarta,2);
-            else
-                this.addCarta(preCarta,1);
+            this.addCarta(preCarta);
         }
-
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= n; j++) {
                 preCarta[0] = i+1;
                 for (int k = 1; k <= n; k++) {
                     preCarta[k] = n+2+n*(k-1)+(((i-1)*(k-1)+j-1)%n);
                 }
-                if(this.cartas.size()>= maxCards)
-                    this.addCarta(preCarta,2);
-                else
-                    this.addCarta(preCarta,1);
+                this.addCarta(preCarta);
             }
+        }
+        while(this.cartas.size()>maxCards){
+            this.cantidadCartas = this.cartas.size();
+            this.shufle();
+            this.cartas.remove(this.cartas.size()-1);
         }
         this.cantidadCartas = this.cartas.size();
     }
 
     /**
      *Implementacion de metodo de interface
-     * @param donde 1 para guardar en el arreglo cartas y 2 para guardar en el arreglo missing cards
      */
     @Override
-    public void addCarta(int[] simbolos, int donde) {
+    public void addCarta(int[] simbolos) {
         Card carta = new Card(simbolos);
-        switch (donde){
-            case 1:
-                this.cartas.add(carta);
-                break;
-            case 2:
-                this.missingCards.add(carta);
-                break;
-        }
+        this.cartas.add(carta);
     }
 
     /**
@@ -108,6 +94,7 @@ public class Dobble implements CardsSet {
                 this.cartas.set(i,aux);
             }
         }
+        System.out.println(this.cartas.toString());
     }
 
 

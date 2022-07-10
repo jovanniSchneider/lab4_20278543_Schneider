@@ -18,11 +18,6 @@ public interface Juego {
      */
     String verTurno();
 
-    /**
-     * Verifica cual es el estado del juego
-     * @return una representacion en string del estado del juego
-     */
-    String verEstado();
 
     /**
      * Entrega cierta cantidad de cartas a cada jugador

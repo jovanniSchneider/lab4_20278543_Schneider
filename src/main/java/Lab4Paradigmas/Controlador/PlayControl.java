@@ -81,6 +81,9 @@ public class PlayControl {
     }
     public void repartirCartas(DobbleGame game){
         game.repartirCartas(0);
+        for (Player player:game.getJugadores()){
+            player.setPuntaje(0);
+        }
     }
 
     public String getWinner(DobbleGame game){

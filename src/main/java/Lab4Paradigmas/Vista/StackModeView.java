@@ -8,8 +8,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
 public class StackModeView extends JFrame{
@@ -93,16 +91,17 @@ public class StackModeView extends JFrame{
                     JOptionPane.showMessageDialog(null,"Correcto!!!\n+1 punto\nTotal de "+ctrl.whoseTurnIsIt(juego)+"\n"+puntaje+" puntos");
                     if(!ctrl.stack(juego)){
                         JOptionPane.showMessageDialog(null,"No quedan cartas en el set\nGanador\n"+ctrl.getWinner(juego));
+                        StackModeView.this.dispose();
                     }
                     ctrl.llenarCarta(labelsc1,juego.getArea().get(0));
                     ctrl.llenarCarta(labelsc2,juego.getArea().get(1));
-                    ctrl.changeTurn(juego);
-                    turno.setText(ctrl.whoseTurnIsIt(juego));
                     StackModeView.this.revalidate();
                     StackModeView.this.repaint();
                     StackModeView.this.pack();
                 }else
                     JOptionPane.showMessageDialog(null,"Incorrecto!!!");
+                ctrl.changeTurn(juego);
+                turno.setText(ctrl.whoseTurnIsIt(juego));
                 timer.start();
                 choice.setText("");
                 choice.requestFocus();
